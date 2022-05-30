@@ -1,0 +1,28 @@
+{
+  "name": "tvdlapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "express": "^4.17.1",
+    "knex": "^0.21.18",
+    "morgan": "^1.10.0",
+    "pg": "^8.5.1",
+    "swagger-autogen": "^2.21.2",
+    "swagger-ui-express": "^4.1.4"
+  },
+  "devDependencies": {
+    "jest": "^28.1.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "swagger-autogen": "node swagger.js",
+    "migrate": "node scripts/migrate.js",
+    "seed": "node scripts/seed.js",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

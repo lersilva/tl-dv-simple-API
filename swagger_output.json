@@ -1,0 +1,214 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "tldv API Sample",
+    "description": "I was rushing to create this file zzzz"
+  },
+  "host": "localhost:5000",
+  "basePath": "/",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/videos/": {
+      "post": {
+        "tags": [
+          "Create New Video"
+        ],
+        "description": "Endpoint to new Video",
+        "parameters": [
+          {
+            "name": "Create Video",
+            "in": "body",
+            "description": "Info video",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/create"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/videos/{page}/{isPrivate}": {
+      "get": {
+        "tags": [
+          "Get all videos"
+        ],
+        "description": "Has a pagination and if not set the default is page 1 off set of 10, also you can filter private/public videos",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "path",
+            "description": "Current page",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "isPrivate",
+            "in": "path",
+            "description": "Current type of visualization",
+            "required": true,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/videos/42": {
+      "get": {
+        "tags": [
+          "42 or greater"
+        ],
+        "description": "Get videos that has 42 or greater times viewed",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/videos/{id}": {
+      "get": {
+        "tags": [
+          "Get by video ID"
+        ],
+        "description": "Try search for id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Update a Video"
+        ],
+        "description": "Endpoint to new Video",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Video ID"
+          },
+          {
+            "name": "updateVideo",
+            "in": "body",
+            "description": "Info video",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/create"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Delete Video"
+        ],
+        "description": "Endpoint to delete video",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Video ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "create": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Jhon Doe"
+        },
+        "url": {
+          "type": "string",
+          "example": "1Gve6LL11qGos88pyXhdaPcFQ265bLcqVJ"
+        },
+        "thumbnailUrl": {
+          "type": "string",
+          "example": "a99fbb39-e6c2-4094-8a9b-93d2077f3b03"
+        },
+        "isPrivate": {
+          "type": "boolean",
+          "example": false
+        },
+        "timesViewed": {
+          "type": "number",
+          "example": 0
+        }
+      },
+      "required": [
+        "name",
+        "url",
+        "thumbnailUrl",
+        "isPrivate",
+        "timesViewed"
+      ]
+    }
+  }
+}

@@ -1,0 +1,29 @@
+version: '3.9'
+
+services:
+ server:
+    build: .
+    command:  >
+      sh -c "node src/scripts/migrate.js && node src/scripts/seed.js &&
+             node src/server.js &&
+             node jest"
+    ports: 
+      - '5000:5000'
+    depends_on:
+      db:
+        condition: service_healthy
+
+ db:
+    image: 'postgres'
+    environment: 
+      POSTGRES_PASSWORD: '12456'
+      POSTGRES_USER: 'docker'
+    volumes:
+      - data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U docker"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+volumes:
+  data:
